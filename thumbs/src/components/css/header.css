@@ -1,0 +1,14 @@
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: black 1px solid;
+    padding-left: 1em;
+    padding-right: 2em;
+}
+
+.logo {
+    color: black;
+    text-align: center;
+}
