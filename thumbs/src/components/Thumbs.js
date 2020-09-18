@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Header from './Header'
 import ApplicationViews from './ApplicationViews'
 
-const Thumbs = () => {
+const Thumbs = props => {
 
     const isAuthenticated = () => sessionStorage.getItem('user') !== null;
 
@@ -18,7 +18,8 @@ const Thumbs = () => {
         setHasUser(isAuthenticated());
       }
 
-    return <ApplicationViews 
+    return <ApplicationViews
+                {...props} 
                 hasUser={hasUser} 
                 setUser={setUser}
                 clearUser={clearUser}
