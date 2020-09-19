@@ -8,9 +8,11 @@ const Public = () => {
     return (
         <>
             <Container>
+                <GroupList />
+            </Container>
+            <Container>
                 <Poll />
             </Container>
-            <GroupList />
         </>
     )
 }

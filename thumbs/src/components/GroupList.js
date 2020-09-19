@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Container from 'react-bootstrap/Container'
 
 const GroupList = () => {
 
@@ -30,13 +29,11 @@ const GroupList = () => {
     }, [])
 
     return (
-        <Container>
             <ListGroup>
                 {groups.map(mappedGroup =>
                 <ListGroup.Item>{mappedGroup.title}</ListGroup.Item>
                 )}
             </ListGroup>
-        </Container>
     )
 }
 
