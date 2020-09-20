@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ListGroup from 'react-bootstrap/ListGroup'
+import Nav from 'react-bootstrap/Nav'
+import './css/sidebar.css'
 
 const GroupList = () => {
 
@@ -29,11 +30,12 @@ const GroupList = () => {
     }, [])
 
     return (
-            <ListGroup>
-                {groups.map(mappedGroup =>
-                <ListGroup.Item>{mappedGroup.title}</ListGroup.Item>
-                )}
-            </ListGroup>
+        <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
+            <div className='sidebar-sticky'></div>
+            {groups.map(mappedGroup =>
+                <Nav.Link key={mappedGroup.id}>{mappedGroup.title}</Nav.Link>
+            )}
+        </Nav>
     )
 }
 

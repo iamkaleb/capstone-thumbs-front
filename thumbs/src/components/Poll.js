@@ -1,28 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
+import IdeaCard from './IdeaCard'
 
-const Poll = () => {
+const Poll = props => {
+
+    const [ideas, setIdeas] = useState([])
+
+    const getIdeas = () => {
+        return fetch('http://localhost:8000/ideas?poll=3', {
+            'method': 'GET',
+            'headers': {
+                'Accept': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('thumbs_token')}`
+            }
+        })
+        .then(response => response.json())
+        .then(ideas => setIdeas(ideas))
+    }
+
+    useEffect(() => {
+        getIdeas()
+    }, [])
 
     return (
-        <Accordion>
-            <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="0">
-                Click me!
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="0">
-                <Card.Body>Hello! I'm the body</Card.Body>
-                </Accordion.Collapse>
-            </Card>
-            <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="1">
-                Click me!
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="1">
-                <Card.Body>Hello! I'm another body</Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </Accordion>
+        <section>
+            <div>
+                <h3>{props.poll.title}</h3>
+            </div>
+            <hr />
+            <Accordion>
+                {ideas.map(mappedIdea => 
+                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} />
+                )}
+            </Accordion>
+        </section>
     )
 }
 
