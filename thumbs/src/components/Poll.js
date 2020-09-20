@@ -30,7 +30,7 @@ const Poll = props => {
             <hr />
             <Accordion>
                 {ideas.map(mappedIdea => 
-                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} />
+                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId}/>
                 )}
             </Accordion>
         </section>
