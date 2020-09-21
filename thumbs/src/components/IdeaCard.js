@@ -2,15 +2,32 @@ import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-
+import Image from 'react-bootstrap/Image'
 
 const IdeaCard = props => {
 
+    const [image, setImage] = useState({})
     const [votes, setVotes] = useState([])
     const [count, setCount] = useState(0)
     const [userUpvote, setUserUpvote] = useState(false)
     const [userDownvote, setUserDownvote] = useState(false)
     const [userVote, setUserVote] =useState({})
+
+    const getImages = () => {
+        return fetch(`http://localhost:8000/ideaimages?idea=${props.idea.id}`, {
+            'method': 'GET',
+            'headers': {
+                'Accept': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('thumbs_token')}`
+            }
+        })
+        .then(response => response.json())
+        .then(imageArr => setImage(imageArr[0]))
+    }
+
+    useEffect(() => {
+        getImages()
+    }, [])
 
     const getVotes = () => {
         return fetch(`http://localhost:8000/votes?idea=${props.idea.id}`, {
@@ -131,7 +148,9 @@ const IdeaCard = props => {
                 {props.idea.title}
             </Card.Header>
             <Accordion.Collapse eventKey={props.idea.id}>
-                <Card.Body>{props.idea.description}</Card.Body>
+                <Card.Body>
+                    {props.idea.description} <Image width='325' src={image.url} rounded fluid/>
+                </Card.Body>
             </Accordion.Collapse>
         </Card>
     )
