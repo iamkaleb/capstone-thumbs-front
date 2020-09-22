@@ -7,7 +7,7 @@ const Poll = props => {
     const [ideas, setIdeas] = useState([])
 
     const getIdeas = () => {
-        return fetch('http://localhost:8000/ideas?poll=3', {
+        return fetch(`http://localhost:8000/ideas?poll=${props.poll.id}`, {
             'method': 'GET',
             'headers': {
                 'Accept': 'application/json',
