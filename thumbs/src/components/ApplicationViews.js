@@ -5,6 +5,8 @@ import Header from './Header'
 import Public from './Public'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import PollForm from './PollForm'
+import Group from './Group'
 
 const ApplicationViews = props => {
 
@@ -41,7 +43,21 @@ const ApplicationViews = props => {
                 }}
             />
 
+            <Route
+                exact
+                path='/poll'
+                render={props => {
+                    return <PollForm {...props} />
+                }}
+            />
 
+            <Route
+                exact
+                path='/group/:groupId'
+                render={props => {
+                    return <Group {...props}/>
+                }}
+            />
 
         </React.Fragment>
     )

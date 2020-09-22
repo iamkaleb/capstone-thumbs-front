@@ -25,7 +25,7 @@ const Public = props => {
     }, [])
 
     const getPolls = () => {
-        return fetch('http://localhost:8000/polls?group=1', {
+        return fetch(`http://localhost:8000/polls?group=1`, {
             'method': 'GET',
             'headers': {
                 'Accept': 'application/json',
@@ -45,9 +45,10 @@ const Public = props => {
             <Container>
                 <Row>
                     <Col xs={2}>
-                        <GroupList />
+                        <GroupList {...props} />
                     </Col>
                     <Col xs={10}>
+                    <h1>Public</h1>
                     {polls.map(mappedPoll => 
                         <Container key={mappedPoll.id}>
                             <Poll key={mappedPoll.id} poll={mappedPoll} userId={userId}/>
