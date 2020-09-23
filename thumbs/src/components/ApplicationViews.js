@@ -21,7 +21,7 @@ const ApplicationViews = props => {
                 path='/' 
                 render={props => {
                     if (isAuthenticated()) {
-                    return <Public {...props} />
+                    return <Redirect to='/group/1'/>
                 } else {
                     return <Redirect to='/login' />
                 }}}

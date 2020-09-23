@@ -8,6 +8,7 @@ import IdeaForm from './IdeaForm'
 const Poll = props => {
 
     const [ideas, setIdeas] = useState([])
+    const [toggle, setToggle] = useState(false)
 
     const getIdeas = () => {
         return fetch(`http://localhost:8000/ideas?poll=${props.poll.id}`, {
@@ -23,7 +24,7 @@ const Poll = props => {
 
     useEffect(() => {
         getIdeas()
-    }, [])
+    }, [toggle])
 
     return (
         <section>
@@ -37,7 +38,7 @@ const Poll = props => {
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>
                     <Card.Body>
-                        <IdeaForm poll={props.poll} />
+                        <IdeaForm poll={props.poll} toggle={toggle} setToggle={setToggle} />
                     </Card.Body>
                 </Accordion.Collapse>
                 {ideas.map(mappedIdea => 

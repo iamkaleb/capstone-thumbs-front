@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, useAccordionToggle } from 'react-bootstrap'
 
 const IdeaForm = props => {
 
@@ -41,6 +41,13 @@ const IdeaForm = props => {
                         },
                         "body": JSON.stringify(imageObj)
         })
+        })
+        .then(() => {
+            title.current.value = ''
+            description.current.value = ''
+            imageURL.current.value = ''
+            
+            props.setToggle(!props.toggle)
         })
     }
 

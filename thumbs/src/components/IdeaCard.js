@@ -157,5 +157,3 @@ const IdeaCard = props => {
 }
 
 export default IdeaCard
-
-{/* <Image width='325' src={image.url} rounded fluid/> */}
