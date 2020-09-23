@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import IdeaCard from './IdeaCard'
+import Card from 'react-bootstrap/esm/Card'
+import Button from 'react-bootstrap/esm/Button'
+import IdeaForm from './IdeaForm'
 
 const Poll = props => {
 
@@ -29,8 +32,16 @@ const Poll = props => {
             </div>
             <hr />
             <Accordion>
+                <Card.Header>
+                    <Accordion.Toggle as={Button} variant='link' eventKey='0'>+ Add an idea to this poll</Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey='0'>
+                    <Card.Body>
+                        <IdeaForm poll={props.poll} />
+                    </Card.Body>
+                </Accordion.Collapse>
                 {ideas.map(mappedIdea => 
-                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId}/>
+                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId} />
                 )}
             </Accordion>
         </section>

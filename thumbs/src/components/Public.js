@@ -45,7 +45,7 @@ const Public = props => {
             <Container>
                 <Row>
                     <Col xs={2}>
-                        <GroupList {...props} />
+                        <GroupList userId={userId} {...props} />
                     </Col>
                     <Col xs={10}>
                     <h1>Public</h1>

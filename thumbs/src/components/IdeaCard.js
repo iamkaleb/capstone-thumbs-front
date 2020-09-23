@@ -6,12 +6,12 @@ import Image from 'react-bootstrap/Image'
 
 const IdeaCard = props => {
 
-    const [image, setImage] = useState({})
+    const [image, setImage] = useState({'url': ''})
     const [votes, setVotes] = useState([])
     const [count, setCount] = useState(0)
     const [userUpvote, setUserUpvote] = useState(false)
     const [userDownvote, setUserDownvote] = useState(false)
-    const [userVote, setUserVote] =useState({})
+    const [userVote, setUserVote] = useState({})
 
     const getImages = () => {
         return fetch(`http://localhost:8000/ideaimages?idea=${props.idea.id}`, {
@@ -157,3 +157,5 @@ const IdeaCard = props => {
 }
 
 export default IdeaCard
+
+{/* <Image width='325' src={image.url} rounded fluid/> */}

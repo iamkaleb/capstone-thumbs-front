@@ -7,7 +7,7 @@ const GroupList = props => {
     const [groups, setGroups] = useState([])
 
     const getGroups = () => {
-        return fetch('http://localhost:8000/groupusers', {
+        return fetch('http://localhost:8000/groupusers?user=yes', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

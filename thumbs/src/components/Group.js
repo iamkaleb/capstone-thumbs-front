@@ -8,6 +8,7 @@ const Group = props => {
     const [polls, setPolls] = useState([])
     const [userId, setUserId] = useState(0)
     const [group, setGroup] = useState({'title': ''})
+    const [users, setUsers] = useState([])
 
     const getUserId = () => {
         return fetch('http://localhost:8000/users', {
@@ -57,6 +58,34 @@ const Group = props => {
         getPolls()
     }, [props.match.params.groupId])
 
+    const getUsers = () => {
+        return fetch(`http://localhost:8000/groupusers?group=${props.match.params.groupId}`, {
+            'method': 'GET',
+            'headers': {
+                'Accept': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('thumbs_token')}`
+            }
+        })
+        .then(response => response.json())
+        .then(groupUserArr => {
+            const userArr = []
+            groupUserArr.forEach(groupUser => {
+                const user = {
+                    'id': groupUser.user.id,
+                    'username': groupUser.user.username,
+                    'firstName': groupUser.user.first_name,
+                    'lastName': groupUser.user.last_name
+                }
+                userArr.push(user)
+            })
+            setUsers(userArr)
+        })
+    }
+
+    useEffect(() => {
+        getUsers()
+    }, [props.match.params.groupId])
+
     return (
         <>
             <Container>
@@ -75,7 +104,14 @@ const Group = props => {
                         )}
                         </Tab>
                         <Tab eventKey='about' title='About'>
+                            <h4>Description</h4>
+                            <hr/>
                             {group.description}
+                            <h3>Members</h3>
+                            <hr/>
+                            <ul>
+                            {users.map(mappedUser => <li key={mappedUser.id}>{mappedUser.username}</li>)}
+                            </ul>
                         </Tab>
                     </Tabs>
                     </Col>
