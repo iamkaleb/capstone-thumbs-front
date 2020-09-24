@@ -7,6 +7,7 @@ import Register from './auth/Register'
 import PollForm from './PollForm'
 import Group from './Group'
 import GroupSearch from './GroupSearch'
+import GroupForm from './GroupForm'
 
 const ApplicationViews = props => {
 
@@ -31,7 +32,7 @@ const ApplicationViews = props => {
                 exact
                 path='/login'
                 render={props => {
-                    return <Login />
+                    return <Login {...props}/>
                 }}
             />
 
@@ -39,7 +40,7 @@ const ApplicationViews = props => {
                 exact
                 path='/register'
                 render={props => {
-                    return <Register />
+                    return <Register {...props}/>
                 }}
             />
 
@@ -48,6 +49,14 @@ const ApplicationViews = props => {
                 path='/poll'
                 render={props => {
                     return <PollForm {...props} />
+                }}
+            />
+
+            <Route
+                exact
+                path='/group'
+                render={props => {
+                    return <GroupForm {...props} />
                 }}
             />
 

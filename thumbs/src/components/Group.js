@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Tab, Tabs } from "react-bootstrap"
+import { Container, Row, Col, Tab, Tabs, Button } from "react-bootstrap"
 import Poll from './Poll'
 import GroupList from './GroupList'
 
@@ -71,7 +71,8 @@ const Group = props => {
             const userArr = []
             groupUserArr.forEach(groupUser => {
                 const user = {
-                    'id': groupUser.user.id,
+                    'id': groupUser.id,
+                    'userId': groupUser.user.id,
                     'username': groupUser.user.username,
                     'firstName': groupUser.user.first_name,
                     'lastName': groupUser.user.last_name
@@ -86,6 +87,27 @@ const Group = props => {
         getUsers()
     }, [props.match.params.groupId])
 
+    const leaveGroup = () => {
+
+        let groupUserId = 0
+
+        users.forEach(user => {
+            if (user.userId === userId) {
+                groupUserId = user.id
+            }
+        })
+
+        return fetch(`http://localhost:8000/groupusers/${groupUserId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "Authorization": `Token ${localStorage.getItem('thumbs_token')}`
+                    }
+        })
+        .then(() => props.history.push('/'))
+    }
+
     return (
         <>
             <Container>
@@ -94,7 +116,7 @@ const Group = props => {
                         <GroupList {...props} />
                     </Col>
                     <Col xs={10}>
-                    <h1>{group.title}</h1>
+                    <h1>{group.title}</h1><Button onClick={leaveGroup}>Leave group</Button>
                     <Tabs defaultActiveKey='polls'>
                         <Tab eventKey='polls' title='Polls'>
                         {polls.map(mappedPoll => 
