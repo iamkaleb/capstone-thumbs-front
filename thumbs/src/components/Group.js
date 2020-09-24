@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Col, Tab, Tabs } from "react-bootstrap"
 import Poll from './Poll'
 import GroupList from './GroupList'
 
@@ -91,7 +91,7 @@ const Group = props => {
             <Container>
                 <Row>
                     <Col xs={2}>
-                        <GroupList {...props} setGroup={setGroup}/>
+                        <GroupList {...props} />
                     </Col>
                     <Col xs={10}>
                     <h1>{group.title}</h1>

@@ -2,11 +2,11 @@ import { Route, Redirect } from 'react-router-dom';
 import React from 'react';
 import useSimpleAuth from '../hooks/useSimpleAuth'
 import Header from './Header'
-import Public from './Public'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import PollForm from './PollForm'
 import Group from './Group'
+import GroupSearch from './GroupSearch'
 
 const ApplicationViews = props => {
 
@@ -56,6 +56,14 @@ const ApplicationViews = props => {
                 path='/group/:groupId'
                 render={props => {
                     return <Group {...props}/>
+                }}
+            />
+
+            <Route
+                exact
+                path='/search/:searchTerm'
+                render={props => {
+                    return <GroupSearch {...props} />
                 }}
             />
 
