@@ -57,25 +57,25 @@ const PollForm = props => {
     return (
         <>
         <h1>Create a new poll</h1>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control ref={title} type='text' placeholder='Title your poll' />
-                </Form.Group>
+        <Form>
+            <Form.Group>
+                <Form.Label>Title</Form.Label>
+                <Form.Control ref={title} type='text' placeholder='Title your poll' />
+            </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control ref={description} type='text' placeholder='Describe your poll' />
-                </Form.Group>
+            <Form.Group>
+                <Form.Label>Description</Form.Label>
+                <Form.Control ref={description} type='text' placeholder='Describe your poll' />
+            </Form.Group>
 
-                <Form.Control ref={group} as='select'>
-                    {groups.map(mappedGroup => <option key={mappedGroup.id} value={mappedGroup.id}>{mappedGroup.title}</option>)}
-                </Form.Control>
+            <Form.Control ref={group} as='select'>
+                {groups.map(mappedGroup => <option key={mappedGroup.id} value={mappedGroup.id}>{mappedGroup.title}</option>)}
+            </Form.Control>
 
-                <Button onClick={submitPoll}>
-                    Submit
-                </Button>
-            </Form>
+            <Button onClick={submitPoll}>
+                Submit
+            </Button>
+        </Form>
         </>
     )
 }
