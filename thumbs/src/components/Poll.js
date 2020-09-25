@@ -42,7 +42,7 @@ const Poll = props => {
                     </Card.Body>
                 </Accordion.Collapse>
                 {ideas.map(mappedIdea => 
-                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId} />
+                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId} toggle={toggle} setToggle={setToggle}/>
                 )}
             </Accordion>
         </section>

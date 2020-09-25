@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Form, Button, useAccordionToggle } from 'react-bootstrap'
+import React, { useRef } from 'react'
+import { Form, Button } from 'react-bootstrap'
 
 const IdeaForm = props => {
 
