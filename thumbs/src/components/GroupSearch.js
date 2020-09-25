@@ -49,7 +49,7 @@ const GroupSearch = props => {
                     </Col>
                     <Col xs={10}>
                     <h1>'{props.match.params.searchTerm}...'</h1>
-                    {groups.map(mappedGroup => <SearchResult key={mappedGroup.id} group={mappedGroup} userId={userId} />)}
+                    {groups.map(mappedGroup => <SearchResult {...props} key={mappedGroup.id} group={mappedGroup} userId={userId} />)}
                     </Col>
                 </Row>
             </Container>

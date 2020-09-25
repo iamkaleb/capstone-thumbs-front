@@ -10,7 +10,7 @@ const PollForm = props => {
     const group = useRef()
 
     const getGroups = () => {
-        return fetch('http://localhost:8000/groupusers', {
+        return fetch(`http://localhost:8000/groupusers?user=0`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
