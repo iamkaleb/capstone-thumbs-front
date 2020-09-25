@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Image from 'react-bootstrap/Image'
+import IdeaCardBody from './IdeaCardBody'
+import EditIdeaForm from './EditIdeaForm'
+import {useAccordionToggle} from 'react-bootstrap/AccordionToggle'
 
 const IdeaCard = props => {
 
@@ -12,6 +14,8 @@ const IdeaCard = props => {
     const [userUpvote, setUserUpvote] = useState(false)
     const [userDownvote, setUserDownvote] = useState(false)
     const [userVote, setUserVote] = useState({})
+    const [edit, setEdit] = useState(false)
+    const [userIdea, setUserIdea] = useState(false)
 
     const getImages = () => {
         return fetch(`http://localhost:8000/ideaimages?idea=${props.idea.id}`, {
@@ -132,6 +136,27 @@ const IdeaCard = props => {
         }
     }
 
+    function CustomToggle({ children, eventKey }) {
+        const decoratedOnClick = useAccordionToggle(eventKey, () =>
+            setEdit(true)  
+        );
+      
+        return (
+          <button
+            type="button"
+            onClick={decoratedOnClick}
+          >
+            {children}
+          </button>
+        );
+      }
+
+    useEffect(() => {
+        if (props.idea.user === props.userId) {
+            setUserIdea(true)
+        }
+    })
+
     return (
         <Card>
             <Card.Header>
@@ -146,10 +171,15 @@ const IdeaCard = props => {
                     : <i as={Button} className="far fa-thumbs-down" onClick={() => handleVote(-1)}></i>
                 }
                 {props.idea.title}
+                {userIdea
+                ? <CustomToggle eventKey={props.idea.id}>Edit</CustomToggle>
+                : null}
             </Card.Header>
             <Accordion.Collapse eventKey={props.idea.id}>
                 <Card.Body>
-                    {props.idea.description} <Image width='325' src={image.url} rounded fluid/>
+                    {edit
+                    ? <EditIdeaForm idea={props.idea} image={image} toggle={props.toggle} setToggle={props.setToggle} setEdit={setEdit}/>
+                    : <IdeaCardBody idea={props.idea} image={image} />}
                 </Card.Body>
             </Accordion.Collapse>
         </Card>

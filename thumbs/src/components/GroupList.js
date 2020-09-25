@@ -38,7 +38,7 @@ const GroupList = props => {
     }
 
     return (
-        <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
+        <Nav className="col-md-12 d-none d-md-block bg-light sidebar ">
             <div className='sidebar-sticky'></div>
 
             <Form inline>

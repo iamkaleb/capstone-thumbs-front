@@ -22,9 +22,9 @@ const ApplicationViews = props => {
                 path='/' 
                 render={props => {
                     if (isAuthenticated()) {
-                    return <Redirect to='/group/1'/>
-                } else {
-                    return <Redirect to='/login' />
+                        return <Redirect to='/group/1'/>
+                    } else {
+                        return <Redirect to='/login' />
                 }}}
             />
 
@@ -48,32 +48,44 @@ const ApplicationViews = props => {
                 exact
                 path='/poll'
                 render={props => {
-                    return <PollForm {...props} />
-                }}
+                    if (isAuthenticated()) {
+                        return <PollForm {...props} />
+                    } else {
+                        return <Redirect to='/login' />
+                }}}
             />
 
             <Route
                 exact
                 path='/group'
                 render={props => {
-                    return <GroupForm {...props} />
-                }}
+                    if (isAuthenticated()) {
+                        return <GroupForm {...props} />
+                    } else {
+                        return <Redirect to='/login' />
+                }}}
             />
 
             <Route
                 exact
                 path='/group/:groupId'
                 render={props => {
-                    return <Group {...props}/>
-                }}
+                    if (isAuthenticated()) {
+                        return <Group {...props}/>
+                    } else {
+                        return <Redirect to='/login' />
+                }}}
             />
 
             <Route
                 exact
                 path='/search/:searchTerm'
                 render={props => {
-                    return <GroupSearch {...props} />
-                }}
+                    if (isAuthenticated()) {
+                        return <GroupSearch {...props} />
+                    } else {
+                        return <Redirect to='/login' />
+                }}}
             />
 
         </React.Fragment>

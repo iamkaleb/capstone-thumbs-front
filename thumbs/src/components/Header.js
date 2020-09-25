@@ -11,12 +11,11 @@ const Header = props => {
 
     const logoutUser = () => {
         logout()
-        props.history.push('/login')
     }
 
     return (
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand onClick={() => props.history.push('/')}>Thumbs</Navbar.Brand>
+        <Navbar.Brand href='http://localhost:3000/'>Thumbs</Navbar.Brand>
         <Nav>
             <NavDropdown title="+ Create" id="basic-nav-dropdown">
                 <NavDropdown.Item href='http://localhost:3000/poll'>Poll</NavDropdown.Item>
