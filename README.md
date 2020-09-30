@@ -22,6 +22,6 @@ Thumbs is a social-media and remote group-collaboration app for creating, sharin
 - React Router Dom
 - React-Bootstrap
 
-## Wireframes and ERD
-![Image of ERD](https://i.imgur.com/IhbmpOy.png)
+## Wireframe and ERD
 ![Image of ERD](https://i.imgur.com/hRHLfId.png)
+![Image of ERD](https://i.imgur.com/IhbmpOy.png)
