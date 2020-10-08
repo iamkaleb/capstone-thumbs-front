@@ -4,11 +4,29 @@ import IdeaCard from './IdeaCard'
 import Card from 'react-bootstrap/esm/Card'
 import Button from 'react-bootstrap/esm/Button'
 import IdeaForm from './IdeaForm'
+import './css/poll.css'
 
 const Poll = props => {
 
     const [ideas, setIdeas] = useState([])
     const [toggle, setToggle] = useState(false)
+
+    const colors = [
+        '#ffadad',
+        '#ffd6a5',
+        '#fdffb6',
+        '#caffbf',
+        '#9bf6ff',
+        '#a0c4ff',
+        '#bdb2ff'
+    ]
+
+    const getColor = () => {
+        const pollColor = colors.shift()
+        colors.push(pollColor)
+
+        return pollColor
+    }
 
     const getIdeas = () => {
         return fetch(`http://localhost:8000/ideas?poll=${props.poll.id}`, {
@@ -19,7 +37,23 @@ const Poll = props => {
             }
         })
         .then(response => response.json())
-        .then(ideas => setIdeas(ideas))
+        .then(ideas => {
+            const ideaArr = []
+
+            ideas.forEach(idea => {
+                const ideaObj = {
+                    'id': idea.id,
+                    'user': idea.user,
+                    'poll': idea.poll,
+                    'title': idea.title,
+                    'description': idea.description,
+                    'color': getColor()
+                }
+
+                ideaArr.push(ideaObj)
+            })
+            setIdeas(ideaArr)
+        })
     }
 
     useEffect(() => {
@@ -29,7 +63,7 @@ const Poll = props => {
     return (
         <section>
             <div>
-                <h3>{props.poll.title}</h3>
+                <h3 className='poll-title'>{props.poll.title}</h3>
             </div>
             <hr />
             <Accordion>
@@ -42,7 +76,7 @@ const Poll = props => {
                     </Card.Body>
                 </Accordion.Collapse>
                 {ideas.map(mappedIdea => 
-                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId} toggle={toggle} setToggle={setToggle}/>
+                    <IdeaCard key={mappedIdea.id} idea={mappedIdea} userId={props.userId} toggle={toggle} setToggle={setToggle} />
                 )}
             </Accordion>
         </section>

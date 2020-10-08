@@ -110,14 +110,14 @@ const Group = props => {
 
     return (
         <>
-            <Container>
+            <div id='groupContainer' className='container'>
                 <Row>
-                    <Col xs={2}>
+                    <Col xs={2.5}>
                         <GroupList {...props} />
                     </Col>
-                    <Col xs={10}>
+                    <Col>
                     <h1>{group.title}</h1><Button onClick={leaveGroup}>Leave group</Button>
-                    <Tabs defaultActiveKey='polls'>
+                    <Tabs className='poll-title' defaultActiveKey='polls'>
                         <Tab eventKey='polls' title='Polls'>
                         {polls.map(mappedPoll => 
                             <Container key={mappedPoll.id}>
@@ -126,10 +126,10 @@ const Group = props => {
                         )}
                         </Tab>
                         <Tab eventKey='about' title='About'>
-                            <h4>Description</h4>
+                            <h4 className='poll-title'>About</h4>
                             <hr/>
                             {group.description}
-                            <h3>Members</h3>
+                            <h4 className='poll-title'>Members</h4>
                             <hr/>
                             <ul>
                             {users.map(mappedUser => <li key={mappedUser.id}>{mappedUser.username}</li>)}
@@ -138,7 +138,7 @@ const Group = props => {
                     </Tabs>
                     </Col>
                 </Row>
-            </Container>
+            </div>
         </>
     )
 }

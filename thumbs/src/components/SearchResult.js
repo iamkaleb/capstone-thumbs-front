@@ -58,9 +58,8 @@ const SearchResult = props => {
 
     return (
         <>
-        <h3>{props.group.title} - {members.length}</h3>
+        <h3 className='group-title'>{props.group.title} - {members.length} members</h3>
         {joined ? null : <Button onClick={joinGroup}>Join</Button>}
-        <h4>Description</h4>
         <hr/>
         {props.group.description}
         </>

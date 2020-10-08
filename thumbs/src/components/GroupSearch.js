@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import GroupList from './GroupList'
 import SearchResult from './SearchResult'
 import { Container, Row, Col } from 'react-bootstrap'
+import './css/search.css'
 
 const GroupSearch = props => {
 
@@ -42,17 +43,17 @@ const GroupSearch = props => {
 
     return (
         <>
-            <Container>
+            <div id='groupContainer' className='container'>
                 <Row>
-                    <Col xs={2}>
+                    <Col xs={2.5}>
                         <GroupList {...props} />
                     </Col>
-                    <Col xs={10}>
-                    <h1>'{props.match.params.searchTerm}...'</h1>
+                    <Col>
+                    <h1 className='search-term'>Search for '{props.match.params.searchTerm}...'</h1>
                     {groups.map(mappedGroup => <SearchResult {...props} key={mappedGroup.id} group={mappedGroup} userId={userId} />)}
                     </Col>
                 </Row>
-            </Container>
+            </div>
         </>
     )
 }
