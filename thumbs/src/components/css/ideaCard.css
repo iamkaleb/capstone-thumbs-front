@@ -1,0 +1,23 @@
+.idea-header {
+    display: grid;
+    grid-template-columns: 50px 75px auto 25px;;
+}
+
+.votes {
+    display: flex;
+    justify-content: center;
+    padding-top: 9px;
+}
+
+.idea-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 9px;
+    padding-right: 100px;
+}
+
+.votes {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+}

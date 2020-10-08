@@ -5,7 +5,7 @@ const IdeaCardBody = props => {
 
     return (
         <>
-            {props.idea.description} <Image width='325' src={props.image.url} rounded fluid/>
+            <img width='325' src={props.image.url} align='right'/> {props.idea.description}
         </>
     )
 }

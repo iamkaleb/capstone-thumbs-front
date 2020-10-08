@@ -11,7 +11,7 @@ const GroupList = props => {
     const searchRef = useRef()
 
     const getGroups = () => {
-        return fetch('http://localhost:8000/groupusers?user=yes', {
+        return fetch('http://localhost:8000/groupusers?user=user', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,11 +38,11 @@ const GroupList = props => {
     }
 
     return (
-        <Nav className="col-md-12 d-none d-md-block bg-light sidebar ">
+        <Nav className="col-md-12 d-none d-md-block sidebar ">
             <div className='sidebar-sticky'></div>
 
             <Form inline>
-                <FormControl ref={searchRef} type="text" placeholder="Search" className="mr-sm-2" />
+                <FormControl ref={searchRef} type="text" placeholder="Search groups" className="mr-sm-2" />
                 <Button variant="outline-success" onClick={searchGroups}>Search</Button>
             </Form>
 

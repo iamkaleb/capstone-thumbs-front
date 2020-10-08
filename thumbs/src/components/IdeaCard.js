@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import IdeaCardBody from './IdeaCardBody'
 import EditIdeaForm from './EditIdeaForm'
 import {useAccordionToggle} from 'react-bootstrap/AccordionToggle'
+import './css/ideaCard.css'
 
 const IdeaCard = props => {
 
@@ -142,12 +143,11 @@ const IdeaCard = props => {
         );
       
         return (
-          <button
-            type="button"
+            <i className="far fa-edit"
             onClick={decoratedOnClick}
-          >
-            {children}
-          </button>
+            >
+                {children}
+            </i>
         );
       }
 
@@ -158,22 +158,26 @@ const IdeaCard = props => {
     })
 
     return (
-        <Card>
-            <Card.Header>
-                <Accordion.Toggle as={Button} variant='link' eventKey={props.idea.id}>+</Accordion.Toggle>
-                {userUpvote 
-                    ? <i as={Button} className="fas fa-thumbs-up" onClick={() => handleVote(+1)}></i> 
-                    : <i as={Button} className="far fa-thumbs-up" onClick={() => handleVote(+1)}></i>
-                }
-                {count} 
-                {userDownvote 
-                    ? <i as={Button} className="fas fa-thumbs-down" onClick={() => handleVote(-1)}></i>
-                    : <i as={Button} className="far fa-thumbs-down" onClick={() => handleVote(-1)}></i>
-                }
-                {props.idea.title}
-                {userIdea
-                ? <CustomToggle eventKey={props.idea.id}>Edit</CustomToggle>
-                : null}
+        <Card style={{ backgroundColor: props.idea.color }}>
+            <Card.Header className='idea-header'>
+                    <Accordion.Toggle className='accordion-toggle' as={Button} variant='link' eventKey={props.idea.id} style={{ backgroundColor: '#f4f3ee' }}>+</Accordion.Toggle>
+                        <div className='votes'>
+                            {userUpvote 
+                                ? <i as={Button} className="fas fa-thumbs-up" onClick={() => handleVote(+1)}></i> 
+                                : <i as={Button} className="far fa-thumbs-up" onClick={() => handleVote(+1)}></i>
+                            }
+                            {count} 
+                            {userDownvote 
+                                ? <i as={Button} className="fas fa-thumbs-down" onClick={() => handleVote(-1)}></i>
+                                : <i as={Button} className="far fa-thumbs-down" onClick={() => handleVote(-1)}></i>
+                            }
+                        </div>
+                        <div className='idea-title'>
+                            {props.idea.title}
+                        </div>
+                        {userIdea
+                        ? <CustomToggle className='idea-edit' eventKey={props.idea.id}></CustomToggle>
+                        : null}
             </Card.Header>
             <Accordion.Collapse eventKey={props.idea.id}>
                 <Card.Body>
